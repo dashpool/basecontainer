@@ -22,7 +22,7 @@ jobs:
         password: ${{ secrets.DOCKER_TOKEN }}
         Dockerfile: Dockerfile.slim
         workdir: .
-        tags: "${{ github.event.release.tag_name }}"
+        tags: "${{ github.event.release.tag_name }}-slim,slim"
 
     - name: Publish container
       uses: elgohr/Publish-Docker-Github-Action@v5
@@ -32,22 +32,22 @@ jobs:
         password: ${{ secrets.DOCKER_TOKEN }}
         Dockerfile: Dockerfile.dev
         workdir: .
-        tags: "${{ github.event.release.tag_name }}-dev"
+        tags: "${{ github.event.release.tag_name }}-dev,dev"
 
 
-    # - name: Create exampleapp release
-    #   env:
-    #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-    #     TARGET_REPO_OWNER: dashpool
-    #     TARGET_REPO_NAME: exampleapp
-    #     TAG_NAME: ${{ github.event.release.tag_name }}
-    #     TAG_DESCRIPTION: ${{ github.event.release.description }}
-    #   run: |
-    #     curl -X POST \
-    #         -H "Accept: application/vnd.github.v3+json" \
-    #         -H "Authorization: token $GITHUB_TOKEN" \
-    #         -d '{"tag_name": "'"$TAG_NAME"'", "name": "Release '"$TAG_NAME"'", "body": "'"$TAG_DESCRIPTION"'"}' \
-    #         "https://api.github.com/repos/$TARGET_REPO_OWNER/$TARGET_REPO_NAME/releases"
+    - name: Create exampleapp release
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        TARGET_REPO_OWNER: dashpool
+        TARGET_REPO_NAME: exampleapp
+        TAG_NAME: ${{ github.event.release.tag_name }}
+        TAG_DESCRIPTION: ${{ github.event.release.description }}
+      run: |
+        curl -X POST \
+            -H "Accept: application/vnd.github.v3+json" \
+            -H "Authorization: token $GITHUB_TOKEN" \
+            -d '{"tag_name": "'"$TAG_NAME"'", "name": "Release '"$TAG_NAME"'", "body": "'"$TAG_DESCRIPTION"'"}' \
+            "https://api.github.com/repos/$TARGET_REPO_OWNER/$TARGET_REPO_NAME/releases"
 
     # - name: Create frontend release
     #   env:
