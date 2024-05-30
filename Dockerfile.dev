@@ -1,4 +1,8 @@
 FROM mcr.microsoft.com/vscode/devcontainers/python:3.11-bullseye
 
+COPY update_dash.py /tmp/update_dash.py
 COPY requirements.txt /tmp/requirements.txt
-RUN pip install --no-cache-dir -r /tmp/requirements.txt && rm /tmp/requirements.txt
+RUN pip install --no-cache-dir -r /tmp/requirements.txt \ 
+&& python /tmp/update_dash.py \
+&& rm /tmp/requirements.txt \
+&& rm /tmp/update_dash.py
