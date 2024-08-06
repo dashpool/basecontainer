@@ -17,8 +17,15 @@ new_default_index = """<!DOCTYPE html>
                 alternativeCSS.href = 'https://dashpool.github.io/assets/bootstrap.css';
                 document.head.appendChild(alternativeCSS);
             }
+            function loadAlternativeGrid() {
+                var alternativeGrid = document.createElement('link');
+                alternativeGrid.rel = 'stylesheet';                
+                alternativeGrid.href = 'https://dashpool.github.io/assets/grid.css';
+                document.head.appendChild(alternativeGrid);
+            }
         </script>             
         <link rel="stylesheet" href="/assets/bootstrap.css" onerror="loadAlternativeCSS()">
+        <link rel="stylesheet" href="/assets/grid.css" onerror="loadAlternativeGrid()">
     </head>
     <body>
         <!--[if IE]><script>
