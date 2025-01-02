@@ -6,7 +6,8 @@ gunicorn==21.2.0
 dash-express-components>=0.0.110
 scipy==1.11.4
 dash-lumino-components>=0.0.20
-dashpool_components>=0.0.81
+dashpool_components>=0.0.89
+dash_pdf_highlighter>=0.0.6
 pymongo==4.6.0
 dash-bootstrap-components==1.5.0
 mongodf==0.1.6
